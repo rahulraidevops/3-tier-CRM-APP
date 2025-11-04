@@ -11,7 +11,7 @@ services:
       - mongo-data:/data/db
 
   backend:
-    build: ./backend
+    image: docker.io/rahuldevops/crm-backend:latest
     restart: unless-stopped
     container_name: backend-app
     env_file: 
@@ -24,7 +24,7 @@ services:
       - mongo
 
   frontend:
-    build:
+    image: docker.io/rahuldevops/crm-frontend:latest
       context: ./frontend
       args:
         REACT_APP_API_URL: /
