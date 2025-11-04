@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-db
+    restart: unless-stopped
+    networks:
+      - crm-nw
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    container_name: backend-app
+    env_file: ./backend/.env
+    networks:
+      - crm-nw
+    depends_on: mongo
+
+  frontend:
+    build: ./frontend
+    restart: always
+    container_name: frontend-app
+    networks:
+      -crm-nw
+    ports:
+      - 8080:80
+    depends_on:
+      - backend
+
+
+networks:
+  crm-nw:
+
+volumes:
+  mongo-data:
