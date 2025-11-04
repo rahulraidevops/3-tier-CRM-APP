@@ -23,6 +23,8 @@ services:
 
   frontend:
     image: docker.io/rahuldevops/crm-frontend:latest
+    build:
+      context: ./frontend
       args:
         REACT_APP_API_URL: /
     restart: unless-stopped
