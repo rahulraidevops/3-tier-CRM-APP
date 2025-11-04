@@ -27,7 +27,7 @@ services:
     build:
       context: ./frontend
       args:
-        REACT_APP_API_URL: http://backend-app:5000
+        REACT_APP_API_URL: /
     restart: always
     container_name: frontend-app
     networks:
