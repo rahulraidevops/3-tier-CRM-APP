@@ -17,14 +17,15 @@ services:
     env_file: ./backend/.env
     networks:
       - crm-nw
-    depends_on: mongo
+    depends_on: 
+      - mongo
 
   frontend:
     build: ./frontend
     restart: always
     container_name: frontend-app
     networks:
-      -crm-nw
+      - crm-nw
     ports:
       - 8080:80
     depends_on:
