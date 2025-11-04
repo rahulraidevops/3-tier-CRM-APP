@@ -14,8 +14,9 @@ services:
     image: rahulrai9/crm-backend:latest
     restart: unless-stopped
     container_name: backend-app
-    env_file: 
-      - ./backend/.env
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/crmdb
     networks:
       - crm-nw
     depends_on: 
