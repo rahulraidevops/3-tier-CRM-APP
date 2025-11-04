@@ -1,9 +1,9 @@
-version: "3"
+version: "3.8"
 
 services:
   mongo:
-    image: mongo
-    container_name: mongo-db
+    image: mongo:6
+    container_name: mongo
     restart: unless-stopped
     networks:
       - crm-nw
@@ -14,16 +14,20 @@ services:
     build: ./backend
     restart: unless-stopped
     container_name: backend-app
-    env_file: ./backend/.env
-    ports:
-      - 5000:5000
+    env_file: 
+      - ./backend/.env
+        #ports:
+        # - 5000:5000
     networks:
       - crm-nw
     depends_on: 
       - mongo
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_API_URL: http://backend-app:5000
     restart: always
     container_name: frontend-app
     networks:
@@ -36,6 +40,7 @@ services:
 
 networks:
   crm-nw:
+    driver: bridge
 
 volumes:
   mongo-data:
