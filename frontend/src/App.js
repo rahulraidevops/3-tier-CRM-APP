@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://backend-app:5000';
+const API_BASE = process.env.REACT_APP_API_URL || '/api';
 
 
 function App() {
