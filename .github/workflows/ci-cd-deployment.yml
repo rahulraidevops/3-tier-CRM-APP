@@ -1,9 +1,5 @@
 name: Build & Push Docker Image to Docker Hub
-on:
-  Push:
-    branches:
-      - main
-      - master
+on: [push, workflow_dispatch]
 env:
   REGISTRY: docker.io
   ORG: ${{ secrets.DOCKERHUB_USERNAME }}
